@@ -24,6 +24,23 @@ const observer = new IntersectionObserver((entries, observer) => {
 const hiddenElements = document.querySelectorAll('.hidden');
 hiddenElements.forEach((el) => observer.observe(el));
 
+let popup = document.getElementById("popup");
+let banner = document.getElementById("cn-banner-text");
+
+function openPopup() {
+	popup.classList.add("open-popup");
+	 banner.classList.add("cn-banner-hidden");
+	 document.body.style.overflow = "hidden";
+
+}
+
+
+function closePopup() {
+	popup.classList.remove("open-popup");
+	banner.classList.remove("cn-banner-hidden");
+	document.body.style.overflow = "auto";
+}
+
 
 
 
