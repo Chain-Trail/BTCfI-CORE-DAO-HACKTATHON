@@ -25,11 +25,13 @@ hiddenElements.forEach((el) => observer.observe(el));
 // code for popup
 let popup = document.getElementById("popup");
 let banner = document.getElementById("cn-banner-text");
+let popupOverlay = document.getElementById("popup-overlay");
 
 function openPopup() {
 	popup.classList.add("open-popup");
 	 banner.classList.add("cn-banner-hidden");
-	 document.body.style.overflow = "hidden";
+     popupOverlay.style.display = "block";
+
 
 }
 
@@ -37,6 +39,7 @@ function closePopup() {
 	popup.classList.remove("open-popup");
 	banner.classList.remove("cn-banner-hidden");
 	document.body.style.overflow = "auto";
+    popupOverlay.style.display = "none";
 };
 //// code for sticky navbar
     window.addEventListener('scroll', function() {
@@ -50,7 +53,7 @@ function closePopup() {
 
 //// code for carousel slide
     $(document).ready(function(){
-        $(".owl-carousel").owlCarousel({
+        $(".without-btn").owlCarousel({
             items: 1, 
             loop: true, 
             margin: 10, 
@@ -62,5 +65,38 @@ function closePopup() {
         });
     });
 
+ $(document).ready(function(){
+            // Initialize the carousel with navigation button
+            var owlWithButton = $("#news-carousel").owlCarousel({
+                items: 3,
+                loop: true,
+                margin: 10,
+                nav: false, // Disable default nav buttons
+                autoplay: true,
+                autoplayTimeout: 3000,
+                autoplayHoverPause: true,
+                responsive: {
+                    0: {
+                        items: 1
+                    },
+                    600: {
+                        items: 2
+                    },
+                    1000: {
+                        items: 3
+                    }
+                }
+            });
 
+            // Custom navigation events for the first carousel
+            $('#customPrevBtn').click(function() {
+                owlWithButton.trigger('prev.owl.carousel');
+            });
+
+            $('#customNextBtn').click(function() {
+                owlWithButton.trigger('next.owl.carousel');
+            });
+
+            
+        });
 
